@@ -14,6 +14,9 @@ import axios from "axios";
 import { useDebounce } from "./hooks/useDebounce";
 import { StateType, StoryType, ActionType } from "./types";
 import { Link } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
+
+
 
 export const title: string = "React Training";
 
@@ -61,6 +64,38 @@ function App(): JSX.Element {
       ),
     [stories]
   );
+  function App() {
+
+    const handlePageClick=() =>{
+      console.log('clicked');
+      
+    }
+    return (
+      <div>
+  
+      <ReactPaginate
+      previousLabel={'previous'}
+      nextLabel={'next'}
+      breakLabel={'...'}
+      pageCount={25}
+      marginPagesDisplayed={3}
+      pageRangeDisplayed={3}
+      onPageChange={handlePageClick}
+      containerClassName={'pagination justify-content-center'}
+      pageClassName={'page-item'}
+      pageLinkClassName={'page-link'}
+      previousClassName={'page-item'}
+      previousLinkClassName={'page-link'}
+      nextClassName={'page-item'}
+      nextLinkClassName={'page-link'}
+      breakClassName={'page-item'}
+      breakLinkClassName={'page-link'}
+      activeClassName={'active'}
+      />
+  
+      </div>
+    );
+  }
 
   const handleFetchStories = useCallback(async () => {
     dispatchStories({ type: "INIT_FETCH" });
